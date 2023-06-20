@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import jQuery from "jquery";
 import axios from "axios";
 
 function DataAPI(){
@@ -9,6 +10,17 @@ function DataAPI(){
             const data = res.data.results;
             console.log(data);
         })
+        .catch((err) =>{
+            console.error(err);
+        }, []);
+        const renderData = (buildings) => {
+            const buildingList = buildings.map((building) => {
+                return `<div key="{building.id}">${building}</div>`
+            });
+            const buildingContainer = $("<div>").addClass("building-list").html(buildingList);
+            $(".data-list").append(buildingContainer);
+        }
+
     })
     return(
         <div>
