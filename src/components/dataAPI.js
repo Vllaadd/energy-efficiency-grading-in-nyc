@@ -5,13 +5,15 @@ function DataAPI(){
         axios
         .get("https://data.cityofnewyork.us/resource/7x5e-2fxh.json")
         .then(res =>{
-            const buildings = res.data[0].city;
-            console.log(buildings);
+            const building = res.data[0].property_name;
+            const grade = res.data[0].energy_star_score;
+            console.log(building + grade);
         })
         .catch((err) =>{
             console.error(err);
         });
 
+        
 
     return(
         <div>
