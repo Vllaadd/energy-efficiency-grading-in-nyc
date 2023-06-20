@@ -1,10 +1,9 @@
 import React from "react";
 
-function dataAPI(){
+function DataAPI(){
     return(
-        <h1> Hello, this is where we get data for the business. </h1>
+        <h1>Hello, this is the page where we get data from the NYC.</h1>
     )
-
 }
 
-export default dataAPI;
+export default DataAPI;
