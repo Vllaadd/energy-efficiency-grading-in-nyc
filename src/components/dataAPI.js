@@ -7,8 +7,8 @@ function DataAPI(){
         axios
         .get("https://data.cityofnewyork.us/resource/7x5e-2fxh.json")
         .then(res =>{
-            const data = res.data.results;
-            console.log(data);
+            const building = res.data.city;
+            console.log(building);
         })
         .catch((err) =>{
             console.error(err);
