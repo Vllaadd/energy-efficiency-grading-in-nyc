@@ -34,9 +34,7 @@ function DataAPI(){
         <div>
             <label>Serch</label>
             <input value={search} onChange={handleInput} />
-        </div><div>
-                <button>Show Low Efficiency Buildings</button>
-            </div>
+        </div>
 {/* TABLE WITH DATA */}
             <div>
                 <table>
