@@ -8,7 +8,7 @@ function DataAPI(){
         axios
         .get("https://data.cityofnewyork.us/resource/7x5e-2fxh.json")
         .then(res => {
-            const buildingData = res.data[0].filter((building)=> ({
+            const buildingData = res.data[0].map((building)=> ({
                 propertyName: building.property_name,
                 borough: building.borough,
                 city: building.city,
