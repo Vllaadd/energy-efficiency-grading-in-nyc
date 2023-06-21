@@ -3,6 +3,7 @@ import axios from "axios";
 
 function DataAPI(){
     const [buildings, setBuildings] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         axios
@@ -15,13 +16,21 @@ function DataAPI(){
             console.error(err);
         });
     }, []);
+
+    const handleInput = (event) =>{
+        setSearch(event.target.value);
+    }
+
+    const filterBuildingSearch = buildings.filter((building) => {
+        building.toLowerCase().includes(search.toLowerCase());
+    })
     
     return (
     <>
 //SEARCH FOR BUILDINGS
         <div>
             <label>Serch</label>
-            <input onChange={inputChange} />
+            <input value={search} onChange={handleInput} />
         </div><div>
                 <button>Show Low Efficiency Building</button>
             </div>
