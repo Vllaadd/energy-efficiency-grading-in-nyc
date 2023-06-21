@@ -22,19 +22,22 @@ function DataAPI(){
     }
 
     const filterBuildingSearch = buildings.filter((building) => {
-        building.toLowerCase().includes(search.toLowerCase());
+        return Object.values(building)
+        .join(" ")
+        .toLowerCase()
+        .includes(search.toLocaleLowerCase())
     })
     
     return (
     <>
-//SEARCH FOR BUILDINGS
+{/* SEARCH FOR BUILDINGS */}
         <div>
             <label>Serch</label>
             <input value={search} onChange={handleInput} />
         </div><div>
-                <button>Show Low Efficiency Building</button>
+                <button>Show Low Efficiency Buildings</button>
             </div>
-//TABLE WITH DATA
+{/* TABLE WITH DATA */}
             <div>
                 <table>
                     <thead>
@@ -46,7 +49,7 @@ function DataAPI(){
                         </tr>
                     </thead>
                     <tbody>
-                        {buildings.map((building) => (
+                        {filterBuildingSearch.map((building) => (
                             <tr key={building.id}>
                                 <td>{building.property_name}</td>
                                 <td>{building.borough}</td>
