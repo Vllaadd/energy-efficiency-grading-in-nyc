@@ -8,11 +8,8 @@ function TestData(){
         axios
         .get("https://data.cityofnewyork.us/resource/7x5e-2fxh.json")
         .then((building) => {
-            // const buildingData = building.data[0].property_name;
             const buildingData = building.data;
-            // buildingData.map((building) =>({
-            //     propertyName: building.data.property_name
-            // }))
+          
             setBuildings(buildingData);
         })
     })

@@ -1,12 +1,11 @@
 
 import React from "react";
-import TestData from "./components/TestData";
-// import DataAPI from "./components/DataAPI";
+import DataAPI from "./components/dataAPI";
 
 function App() {
   return (
     <div className="App">
-     <TestData />
+     <DataAPI />
     </div>
   );
 }
