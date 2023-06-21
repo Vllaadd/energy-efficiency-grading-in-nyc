@@ -1,6 +1,6 @@
 
 import React from "react";
-import DataAPI from "./components/dataAPI";
+import DataAPI from "./components/DataAPI"
 
 function App() {
   return (
