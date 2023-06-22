@@ -5,7 +5,7 @@ import "./buildingsAPI.css";
 function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
-    
+
     useEffect(() => {
         axios
         .get("https://data.cityofnewyork.us/resource/355w-xvp2.json")
@@ -45,6 +45,10 @@ const sortedBuildings = buildings.sort((a, b) => {
     
     return (
     <>
+{/* INTRODUCTION */}
+        <div>
+
+        </div>
 {/* SEARCH FOR BUILDINGS */}
         <div className="search-bar">
             <label>Serch</label>
@@ -55,19 +59,23 @@ const sortedBuildings = buildings.sort((a, b) => {
                 <table>
                     <thead className="table-header">
                         <tr>
-                            <th>Property Name</th>
-                            <th>Borough</th>
+                            <th>Building Class</th>
+                            <th>Square Footage</th>
                             <th>Address</th>
-                            <th>Energy Efficiancy Score</th>
+                            <th>Borough</th>
+                            <th>Energy Star Score</th>
+                            <th>Letter Score</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filterBuildingSearch.map((building) => (
                             <tr key={building.id}>
-                                <td>{building.property_name}</td>
-                                <td>{building.borough}</td>
-                                <td>{building.address_1}</td>
+                                <td>{building.building_class}</td>
+                                <td>{building.dof_gross_square_footage}</td>
+                                <td>{building.address}</td>
+                                <td>{building.boroughname}</td>
                                 <td>{building.energy_star_score}</td>
+                                <td>{building.letterscore}</td>
                             </tr>
                         ))}
                     </tbody>
