@@ -17,16 +17,21 @@ function DataAPI(){
         });
     }, []);
 
+// GIVE VALUE TO USERS INPUT
     const handleInput = (event) =>{
         setSearch(event.target.value);
     }
 
+// FILTER BUILDINGS AS USERS TYPE 
     const filterBuildingSearch = buildings.filter((building) => {
         return Object.values(building)
         .join(" ")
         .toLowerCase()
         .includes(search.toLocaleLowerCase())
     })
+
+// SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
+    const sortedBuildings = buildings.sort((a, b) => a.energy_star_score - b.energy_star_score);
     
     return (
     <>
