@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "../components/BuildingsAPI";
 
-function DataAPI(){
+function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
 
@@ -76,4 +77,4 @@ const sortedBuildings = buildings.sort((a, b) => {
     );
 }
 
-export default DataAPI;
+export default BuildingsAPI;
