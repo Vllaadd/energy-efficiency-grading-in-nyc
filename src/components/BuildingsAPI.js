@@ -8,7 +8,11 @@ function BuildingsAPI(){
 
     useEffect(() => {
         axios
-        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json")
+        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json", {
+            params: {
+                $limit: 500,
+            },
+        })
         .then(building => {
             const buildingData = building.data;
              setBuildings(buildingData)
