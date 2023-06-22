@@ -49,13 +49,13 @@ const sortedBuildings = buildings.sort((a, b) => {
         <div>
         <h3>New York City Building Efficiency Grades: Promoting Sustainability and Transparency</h3>
         <p>As part of the city's commitment to sustainability and environmental awareness, all buildings are required to disclose their energy efficiency scores. These scores are represented by a letter grade, ranging from A to D, with A being the most energy-efficient and D indicating lower energy efficiency. These grades reflect the building's overall energy performance and serve as an important indicator of its environmental impact. By making these grades publicly available, New York City aims to promote transparency, encourage energy-conscious practices, and empower individuals and communities to make informed choices for a greener future.</p>
-        <p>As per Local Law 95 of 2019 grades based on Energy Star energy efficiency scores will be assigned as follows:
-            A - score is equal to or greater than 85
-            B - score is equal to or greater than 70 but lesst han 85
-            C - score is equal to or greater than 55 but less than 70
-            D - score is less than 55
-            F - for buildings that didn't submit required benchmarking information
-            N - for buildings exempted from benchmarking or not covered by the Energy Star program 
+        <p>As per <strong>Local Law 95 of 2019</strong> grades based on Energy Star energy efficiency scores will be assigned as follows:<br/>
+            <strong>A</strong> - score is equal to or greater than 85<br/>
+            <string>B</string> - score is equal to or greater than 70 but lesst han 85<br/>
+            <strong>C</strong> - score is equal to or greater than 55 but less than 70<br/>
+            <strong>D</strong> - score is less than 55<br/>
+            <strong>F</strong> - for buildings that didn't submit required benchmarking information<br/>
+            <strong>N</strong> - for buildings exempted from benchmarking or not covered by the Energy Star program<br/>
         </p>
         </div>
 {/* SEARCH FOR BUILDINGS */}
