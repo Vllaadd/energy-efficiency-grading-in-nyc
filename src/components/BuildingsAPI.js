@@ -46,7 +46,7 @@ const sortedBuildings = buildings.sort((a, b) => {
     return (
     <>
 {/* SEARCH FOR BUILDINGS */}
-        <div>
+        <div className="search-bar">
             <label>Serch</label>
             <input value={search} onChange={handleInput} />
         </div>
