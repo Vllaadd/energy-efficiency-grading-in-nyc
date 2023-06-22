@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../components/BuildingsAPI";
+import "./buildingsAPI.css";
 
 function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
@@ -53,7 +53,7 @@ const sortedBuildings = buildings.sort((a, b) => {
 {/* TABLE WITH DATA */}
             <div>
                 <table>
-                    <thead>
+                    <thead className="table-header">
                         <tr>
                             <th>Property Name</th>
                             <th>Borough</th>
