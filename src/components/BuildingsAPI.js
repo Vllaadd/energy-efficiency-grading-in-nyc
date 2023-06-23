@@ -5,12 +5,14 @@ import "./buildingsAPI.css";
 function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const buildingsPerPage = 500;
 
     useEffect(() => {
         axios
         .get("https://data.cityofnewyork.us/resource/355w-xvp2.json", {
             params: {
-                $limit: 500,
+                $limit: buildingsPerPage,
             },
         })
         .then(building => {
@@ -46,6 +48,24 @@ const sortedBuildings = buildings.sort((a, b) => {
       return a.energy_star_score - b.energy_star_score;
     }
   });
+
+// SET UP PAGES
+  const totalPages = Math.ceil(sortedBuildings.length/buildingsPerPage);
+  const startIndex = (currentPage - 1) * buildingsPerPage;
+  const endIndex = startIndex + buildingsPerPage;
+  const currentBuildings = sortedBuildings.slice(startIndex, endIndex);
+
+  const handlePreviousPage = () => {
+    if(currentPage > 1){
+        setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if(currentPage < totalPages){
+        setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
     
     return (
     <>
@@ -62,7 +82,7 @@ const sortedBuildings = buildings.sort((a, b) => {
             <strong>N</strong> - for buildings exempted from benchmarking or not covered by the Energy Star program<br/>
         </p>
         </div>
-{/* SEARCH FOR BUILDINGS */}
+{/* SEARCH */}
         <div className="search-bar">
             <label>Serch</label>
             <input value={search} onChange={handleInput} />
@@ -81,7 +101,7 @@ const sortedBuildings = buildings.sort((a, b) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {filterBuildingSearch.map((building) => (
+                        {currentBuildings.map((building) => (
                             <tr key={building.id}>
                                 <td>{building.building_class}</td>
                                 <td>{building.dof_gross_square_footage}</td>
@@ -93,6 +113,12 @@ const sortedBuildings = buildings.sort((a, b) => {
                         ))}
                     </tbody>
                 </table>
+            </div>
+{/* PAGES BUTTONS */}
+            <div className="pages">
+                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous Page</button>
+                <span>{currentPage}</span>
+                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next Page</button>
             </div>
         </>
     );
