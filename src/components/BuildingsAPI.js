@@ -11,21 +11,42 @@ function BuildingsAPI() {
 
 
     useEffect(() => {
-        axios
-            .get("https://data.cityofnewyork.us/resource/355w-xvp2.json", {
-                headers: {
-                    "X-App-Token": apiToken
+        const fetchData = async () => {
+          try {
+            const totalEntries = 21681; // Total number of entries to retrieve
+            const pageSize = 1000; // Number of entries to retrieve per request
+            const totalPages = Math.ceil(totalEntries / pageSize); // Calculate the total number of pages
+      
+            const fetchedData = [];
+      
+            // Loop through each page and retrieve data
+            for (let page = 0; page < totalPages; page++) {
+              const response = await axios.get(
+                "https://data.cityofnewyork.us/resource/355w-xvp2.json",
+                {
+                  headers: {
+                    "X-App-Token": apiToken,
+                  },
+                  params: {
+                    $limit: pageSize,
+                    $offset: page * pageSize, // Calculate the offset based on the current page
+                  },
                 }
-            })
-            .then(building => {
-                const buildingData = building.data;
-                setBuildings(buildingData);
-                console.log(building.headers)
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    }, []);
+              );
+      
+              const pageData = response.data;
+              fetchedData.push(...pageData);
+            }
+      
+            setBuildings(fetchedData);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+      
+        fetchData();
+      }, []);
+      
 
 
     // GIVE VALUE TO USERS INPUT
