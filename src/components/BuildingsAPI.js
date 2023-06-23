@@ -6,7 +6,7 @@ function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const buildingsPerPage = 500;
+    const buildingsPerPage = 100;
 
     useEffect(() => {
         axios
@@ -39,9 +39,9 @@ function BuildingsAPI(){
 
 // SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
 const sortedBuildings = buildings.sort((a, b) => {
-    if (a.energy_star_score === "Not Available" && b.energy_star_score !== "not available") {
+    if (a.energy_star_score === "Not Available" && b.energy_star_score !== "Not Available") {
       return -1; // "not available" comes before other scores
-    } else if (a.energy_star_score !== "Not Available" && b.energy_star_score === "not available") {
+    } else if (a.energy_star_score !== "Not Available" && b.energy_star_score === "Not Available") {
       return 1; // "not available" comes after other scores
     } else {
       // Sort based on numeric score if both scores are available
