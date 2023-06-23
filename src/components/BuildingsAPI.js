@@ -14,7 +14,12 @@ function BuildingsAPI() {
     useEffect(() => {
         axios
             .get("https://data.cityofnewyork.us/resource/355w-xvp2.json", {
-                "X-App-Token": apiToken,
+                headers: {
+                    "X-App-Token": apiToken
+                },
+                params: {
+                    $limit: 100
+                }
             })
             .then(building => {
                 const buildingData = building.data;
@@ -27,12 +32,12 @@ function BuildingsAPI() {
     }, []);
 
 
-// GIVE VALUE TO USERS INPUT
+    // GIVE VALUE TO USERS INPUT
     const handleInput = (event) => {
         setSearch(event.target.value);
     }
 
-// FILTER BUILDINGS AS USERS TYPE 
+    // FILTER BUILDINGS AS USERS TYPE 
     const filterBuildingSearch = buildings.filter((building) => {
         return Object.values(building)
             .join(" ")
@@ -40,7 +45,7 @@ function BuildingsAPI() {
             .includes(search.toLocaleLowerCase())
     })
 
-// SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
+    // SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
     const sortedBuildings = buildings.sort((a, b) => {
         if (a.energy_star_score === "Not Available" && b.energy_star_score !== "Not Available") {
             return -1; // "not available" comes before other scores
@@ -52,7 +57,7 @@ function BuildingsAPI() {
         }
     });
 
-// SET UP PAGES
+    // SET UP PAGES
     const totalPages = Math.ceil(buildings.length / buildingsPerPage);
     console.log(totalPages);
     console.log(buildings.length);
@@ -74,7 +79,7 @@ function BuildingsAPI() {
 
     return (
         <>
-{/* INTRODUCTION */}
+            {/* INTRODUCTION */}
             <div>
                 <h3>New York City Building Efficiency Grades: Promoting Sustainability and Transparency</h3>
                 <p>As part of the city's commitment to sustainability and environmental awareness, all buildings are required to disclose their energy efficiency scores. These scores are represented by a letter grade, ranging from A to D, with A being the most energy-efficient and D indicating lower energy efficiency. These grades reflect the building's overall energy performance and serve as an important indicator of its environmental impact. By making these grades publicly available, New York City aims to promote transparency, encourage energy-conscious practices, and empower individuals and communities to make informed choices for a greener future.</p>
@@ -87,13 +92,13 @@ function BuildingsAPI() {
                     <strong>N</strong> - for buildings exempted from benchmarking or not covered by the Energy Star program<br />
                 </p>
             </div>
-{/* SEARCH */}
+            {/* SEARCH */}
             <div className="container">
                 <div className="search-bar">
                     <label>Search:</label>
                     <input value={search} onChange={handleInput} />
                 </div>
-{/* TABLE WITH DATA */}
+                {/* TABLE WITH DATA */}
                 <table className="table-container">
                     <thead className="table-header">
                         <tr>
@@ -120,7 +125,7 @@ function BuildingsAPI() {
                 </table>
             </div>
 
-{/* PAGES BUTTONS */}
+            {/* PAGES BUTTONS */}
             <div className="pages">
                 <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous Page</button>
                 <span>{currentPage}</span>
