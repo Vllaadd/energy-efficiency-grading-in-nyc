@@ -13,7 +13,9 @@ function BuildingsAPI(){
 
     useEffect(() => {
         axios
-        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json?$$app_token=" + apiToken )
+        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json", {
+            "X-App-Token": apiToken,
+        })
         .then(building => {
             const buildingData = building.data;
              setBuildings(buildingData);
