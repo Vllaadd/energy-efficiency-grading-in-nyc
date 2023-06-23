@@ -4,17 +4,14 @@ import "./buildingsAPI.css";
 
 function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
+    console.log(buildings.length);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const buildingsPerPage = 100;
+    const buildingsPerPage = 500;
 
     useEffect(() => {
         axios
-        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json", {
-            params: {
-                $limit: buildingsPerPage,
-            },
-        })
+        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json")
         .then(building => {
             const buildingData = building.data;
              setBuildings(buildingData)
@@ -23,6 +20,7 @@ function BuildingsAPI(){
             console.error(err);
         });
     }, []);
+    
 
 // GIVE VALUE TO USERS INPUT
     const handleInput = (event) =>{
@@ -50,7 +48,9 @@ const sortedBuildings = buildings.sort((a, b) => {
   });
 
 // SET UP PAGES
-  const totalPages = Math.ceil(sortedBuildings.length/buildingsPerPage);
+  const totalPages = Math.ceil(buildings.length/buildingsPerPage);
+  console.log(totalPages);
+  console.log(buildings.length);
   const startIndex = (currentPage - 1) * buildingsPerPage;
   const endIndex = startIndex + buildingsPerPage;
   const currentBuildings = sortedBuildings.slice(startIndex, endIndex);
