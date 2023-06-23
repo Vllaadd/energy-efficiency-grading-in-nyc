@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./buildingsAPI.css";
+import { apiToken } from "./.config";
 
 function BuildingsAPI(){
     const [buildings, setBuildings] = useState([]);
-    console.log(buildings.length);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const buildingsPerPage = 500;
+    const buildingsPerPage = 100;
+
+    console.log(apiToken);
 
     useEffect(() => {
         axios
-        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json")
+        .get("https://data.cityofnewyork.us/resource/355w-xvp2.json?$$app_token=" + apiToken )
         .then(building => {
             const buildingData = building.data;
-             setBuildings(buildingData)
+             setBuildings(buildingData);
+             console.log(building.headers)
             })
         .catch((err) =>{
             console.error(err);
