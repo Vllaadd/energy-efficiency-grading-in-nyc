@@ -7,39 +7,41 @@ function BuildingsAPI() {
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const buildingsPerPage = 500;
+    const buildingsPerPage = 1000;
 
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const totalEntries = 21681; // Total number of entries to retrieve
             const pageSize = 1000; // Number of entries to retrieve per request
-            const totalPages = Math.ceil(totalEntries / pageSize); // Calculate the total number of pages
-      
+            const totalEntries = 21681; //total number of entries in the database
+            const totalPages = Math.ceil(totalEntries / pageSize ); //calculate the total number of pages
+
             const fetchedData = [];
-      
+
             // Loop through each page and retrieve data
-            for (let page = 0; page < totalPages; page++) {
-              const response = await axios.get(
-                "https://data.cityofnewyork.us/resource/355w-xvp2.json",
-                {
-                  headers: {
-                    "X-App-Token": apiToken,
-                  },
-                  params: {
-                    $limit: pageSize,
-                    $offset: page * pageSize, // Calculate the offset based on the current page
-                  },
-                }
-              );
-      
-              const pageData = response.data;
-              fetchedData.push(...pageData);
+            for (let page = 0; page < totalPages; page++){
+                const response = await axios.get(
+                    "https://data.cityofnewyork.us/resource/355w-xvp2.json",
+                    {
+                      headers: {
+                        "X-App-Token": apiToken,
+                      },
+                      params: {
+                        $limit: pageSize,
+                        $offset: page * pageSize,
+                      },
+                    }
+                  );
+          
+                  const pageData = response.data;
+                  fetchedData.push(...pageData);
             }
+              
+            console.log("Fetched Data:" , fetchedData);
       
             setBuildings(fetchedData);
-          } catch (error) {
+        }catch (error) {
             console.error(error);
           }
         };
@@ -54,13 +56,13 @@ function BuildingsAPI() {
         setSearch(event.target.value);
     }
 
-    // FILTER BUILDINGS AS USERS TYPE 
-    const filterBuildingSearch = buildings.filter((building) => {
-        return Object.values(building)
-            .join(" ")
-            .toLowerCase()
-            .includes(search.toLocaleLowerCase())
-    })
+    // // FILTER BUILDINGS AS USERS TYPE 
+    // const filterBuildings = buildings.filter((building) => {
+    //    return  Object.values(building)
+    //         .join(" ")
+    //         .toLowerCase()
+    //         .includes(search.toLowerCase())
+    // })
 
     // SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
     const sortedBuildings = buildings.sort((a, b) => {
@@ -74,7 +76,7 @@ function BuildingsAPI() {
         }
     });
 
-    // SET UP PAGES
+    // SET UP PAGINATION
     const totalPages = Math.ceil(buildings.length / buildingsPerPage);
     console.log("# of pages:" + totalPages);
     console.log("# of entries: " +buildings.length);
