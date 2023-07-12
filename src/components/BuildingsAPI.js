@@ -7,7 +7,7 @@ function BuildingsAPI() {
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const buildingsPerPage = 10;
+    const buildingsPerPage = 100;
 
 
     useEffect(() => {
