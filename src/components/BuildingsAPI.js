@@ -6,38 +6,20 @@ import { apiToken } from "./.config";
 function BuildingsAPI() {
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const buildingsPerPage = 1000;
 
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const pageSize = 1000; // Number of entries to retrieve per request
-            const totalEntries = 21681; //total number of entries in the database
-            const totalPages = Math.ceil(totalEntries / pageSize ); //calculate the total number of pages
-
-            const fetchedData = [];
-
-            // Loop through each page and retrieve data
-            for (let page = 0; page < totalPages; page++){
                 const response = await axios.get(
-                    "https://data.cityofnewyork.us/resource/355w-xvp2.json",
+                    "https://data.cityofnewyork.us/resource/355w-xvp2.json?$limit=50000",
                     {
                       headers: {
                         "X-App-Token": apiToken,
                       },
-                      params: {
-                        $limit: pageSize,
-                        $offset: page * pageSize,
-                      },
                     }
                   );
-          
-                  const pageData = response.data;
-                  fetchedData.push(...pageData);
-            }
-              
+              const fetchedData = response.data;
             console.log("Fetched Data:" , fetchedData);
       
             setBuildings(fetchedData);
@@ -49,22 +31,20 @@ function BuildingsAPI() {
         fetchData();
       }, []);
       
-
-
-    // GIVE VALUE TO USERS INPUT
+// GIVE VALUE TO USERS INPUT
     const handleInput = (event) => {
         setSearch(event.target.value);
     }
 
-    // // FILTER BUILDINGS AS USERS TYPE 
-    // const filterBuildings = buildings.filter((building) => {
-    //    return  Object.values(building)
-    //         .join(" ")
-    //         .toLowerCase()
-    //         .includes(search.toLowerCase())
-    // })
+// FILTER BUILDINGS AS USERS TYPE 
+    const filterBuildings = buildings.filter((building) => {
+       Object.values(building)
+            .join(" ")
+            .toLowerCase()
+            .includes(search.toLowerCase())
+     })
 
-    // SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
+// SORT BUILDINGS IN ORDER BY ENERGY EFFICIENCY SCORE 
     const sortedBuildings = buildings.sort((a, b) => {
         if (a.energy_star_score === "Not Available" && b.energy_star_score !== "Not Available") {
             return -1; // "not available" comes before other scores
@@ -75,26 +55,6 @@ function BuildingsAPI() {
             return a.energy_star_score - b.energy_star_score;
         }
     });
-
-    // SET UP PAGINATION
-    const totalPages = Math.ceil(buildings.length / buildingsPerPage);
-    console.log("# of pages:" + totalPages);
-    console.log("# of entries: " +buildings.length);
-    const startIndex = (currentPage - 1) * buildingsPerPage;
-    const endIndex = startIndex + buildingsPerPage;
-    const currentBuildings = sortedBuildings.slice(startIndex, endIndex);
-
-    const handlePreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage((prevPage) => prevPage - 1);
-        }
-    };
-
-    const handleNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage((prevPage) => prevPage + 1);
-        }
-    };
 
     return (
         <>
@@ -130,7 +90,7 @@ function BuildingsAPI() {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentBuildings.map((building) => (
+                        {sortedBuildings.map((building) => (
                             <tr key={building.id}>
                                 <td>{building.building_class}</td>
                                 <td>{building.dof_gross_square_footage}</td>
@@ -142,13 +102,6 @@ function BuildingsAPI() {
                         ))}
                     </tbody>
                 </table>
-            </div>
-
-            {/* PAGES BUTTONS */}
-            <div className="pages">
-                <button onClick={handlePreviousPage} disabled={currentPage === 1}>Previous Page</button>
-                <span>{currentPage}</span>
-                <button onClick={handleNextPage} disabled={currentPage === totalPages}>Next Page</button>
             </div>
         </>
     );
