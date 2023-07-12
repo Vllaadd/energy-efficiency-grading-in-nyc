@@ -38,7 +38,7 @@ function BuildingsAPI() {
 
 // FILTER BUILDINGS AS USERS TYPE 
     const filterBuildings = buildings.filter((building) => {
-       Object.values(building)
+       return Object.values(building)
             .join(" ")
             .toLowerCase()
             .includes(search.toLowerCase())
