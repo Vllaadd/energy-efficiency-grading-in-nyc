@@ -6,6 +6,8 @@ import { apiToken } from "./.config";
 function BuildingsAPI() {
     const [buildings, setBuildings] = useState([]);
     const [search, setSearch] = useState("");
+    const [currentPage, setCurrentPage] = useState(1);
+    const buildingsPerPage = 10;
 
 
     useEffect(() => {
@@ -56,6 +58,24 @@ function BuildingsAPI() {
         }
     });
 
+// SET UP PAGINATION
+    const totalPages = Math.ceil(sortedBuildings.length / buildingsPerPage);
+    const startIndex = (currentPage - 1) * buildingsPerPage;
+    const endIndex = startIndex + buildingsPerPage;
+    const currentBuildings = sortedBuildings.slice(startIndex, endIndex);
+
+    const handlePreviousPage = () => {
+        if(currentPage > 1){
+            setCurrentPage((prevPage) => prevPage - 1);
+        }
+    };
+
+    const handleNextPage = () => {
+        if(currentPage < totalPages) {
+            setCurrentPage((prevPage) => prevPage + 1);
+        }
+    };
+
     return (
         <>
             {/* INTRODUCTION */}
@@ -102,6 +122,17 @@ function BuildingsAPI() {
                         ))}
                     </tbody>
                 </table>
+
+                {/* PAGES BUTTONS */}
+                <div className="pages">
+                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                        Previous Page
+                    </button>
+                    <span>{currentPage}</span>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        Next Page
+                    </button>
+                </div>
             </div>
         </>
     );
