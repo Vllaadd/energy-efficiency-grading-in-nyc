@@ -110,7 +110,7 @@ function BuildingsAPI() {
                         </tr>
                     </thead>
                     <tbody>
-                        {sortedBuildings.map((building) => (
+                        {currentBuildings.map((building) => (
                             <tr key={building.id}>
                                 <td>{building.building_class}</td>
                                 <td>{building.dof_gross_square_footage}</td>
