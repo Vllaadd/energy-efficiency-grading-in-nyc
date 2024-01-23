@@ -26,3 +26,17 @@ The primary purpose here is to fetch data from an external API when the componen
 The use of 'useEffect' is crucial here because making API calls directly in the component body could lead to performance issues or unexpected behavior. useEffect ensures that the API call is made at the appropriate time in the component's lifecycle. 
 
 ### Line 41
+The `filter` function is used on the `buildings` array to create a new array (`filterBuildings`) with elements that satisfy the provided condition. 
+`(building) => {...}` is an arrow function that takes each `building` object from the `building` array. 
+`Object.values(building)` returns an array containing all the property values of the `building` object
+
+### Line 49
+`[...filterBuildings]` - the spread operator creates a shallow copy of the `filterBuildings` array. This is done to avoid mutating the original array during the sorting process. 
+`sort((a, b) => { ... })` - the sort method is used to arrange the buildings in a specific order. The comparison function `(a, b) => ... ` determines the sorting logic. 
+'sort' function should return a negative number, zero, or a positive number. The specific values -1, 0, and 1 are commonly used for this purpose. 
+So, when you return `-1`, it's telling the sort function that the elements should be rearranged so that the current element `(a)` comes before the next element `(b)`. When you return `1`, it's indicating that the current element `(a)` should come after the next element `(b)`.
+
+### Line 62
+
+
+
