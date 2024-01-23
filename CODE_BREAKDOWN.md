@@ -37,6 +37,19 @@ The `filter` function is used on the `buildings` array to create a new array (`f
 So, when you return `-1`, it's telling the sort function that the elements should be rearranged so that the current element `(a)` comes before the next element `(b)`. When you return `1`, it's indicating that the current element `(a)` should come after the next element `(b)`.
 
 ### Line 62
+`pagination logic`:
+1. `totalPages`: 
+    `totalPages` is calculated by dividing the total number of buildings (`sortedBuildings.length`) by the number of buildings per pate (`buildingsPerPage`). 
+    `Math.ceil` is used to ensure that if there's a remainder, it is rounded up to the nearest whole number. This gives the total number of pages needed to display all buildings. 
+2. `startIndex` and `endIndex`:
+    `startIndex` is calculated to determine the index of the fist building on the current page 
+    `endIndex` is calculated to determine the index of the last building on the current page 
+3. `currentBuildings`: 
+    `currentBuildings` is created using the `slice` method on the `sortedBuildings` array. It represents the subset of buildings that should be displayed on the current page. 
+4. `handlePreviousPage` is a function that 
+    decreases the current page (`currentPage`) by 1, but only if the current page is greater than 1. This ensures that the page number doesn't go below 1. 
+5. `handleNextPage`: 
+    `handleNextPage` is a function that increases the current page (`currentPage`) by 1, but only if the current page is less than the total number of pages (`totalPages`). This prevents navigating beyond the last page. 
 
 
 
