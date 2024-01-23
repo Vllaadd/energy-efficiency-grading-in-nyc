@@ -4,7 +4,7 @@ In a React project, App.js file servers as the central hub, acting as the main e
 
 # BuildingsAPI.js
 
-• Line 7
+### Line 7
 In the lines 7 to 10 we are using `useState` hook to initialize state variables. 
 `buildings` is a state variable that will hold an array of building data
 `search` is a state variable that will hold the user's input 
@@ -13,7 +13,7 @@ In the lines 7 to 10 we are using `useState` hook to initialize state variables.
 
 By using state, we ensure that React can track changes to these values, and when they update, the component will re-render appropriately. 
 
-• Line 13
+### Line 13
 The `useEffect` hook is used for handling side effects in functinal components. Side effects can include data fetching, subscriptions, or manually changing the DOM. 
 
 The primary purpose here is to fetch data from an external API when the component mounts. 
@@ -25,4 +25,4 @@ The primary purpose here is to fetch data from an external API when the componen
 
 The use of 'useEffect' is crucial here because making API calls directly in the component body could lead to performance issues or unexpected behavior. useEffect ensures that the API call is made at the appropriate time in the component's lifecycle. 
 
-• Line 41
+### Line 41
