@@ -4,6 +4,24 @@ In a React project, App.js file servers as the central hub, acting as the main e
 
 # BuildingsAPI.js
 
+### Methods Used:
+
+1. `useState hook` - to initialize current state and change the value later.
+2. `useEffect hook` - to fetch data.
+3. `async await` - to deal with fetching data.
+4. `.filter method` - to filter data as the user types.
+5. `[... filterBuildings]` - spread method used to include all the data.
+6. `if conditionals` - used when sorting buildings.
+7. `math.ceil( ... )` - to round the value when setting up the pages.
+8. `.sort method` - used to sort buildings based on energy efficiency score.
+9. `Object.values method` - to get an array of a given object's own enumerable property values.
+10. `.join method` - to join elements of an array into a string.
+11. `.toLowerCase method` - to convert strings to lowercase for case-insensitive comparison.
+12. `.slice method` - to extract a portion of an array (used for pagination).
+13. `Event Handling` - functions like handleInput, handlePreviousPage, and handleNextPage are handling user input and page navigation.
+
+## Explenations 
+
 ### Line 7
 In the lines 7 to 10 we are using `useState` hook to initialize state variables. 
 `buildings` is a state variable that will hold an array of building data
