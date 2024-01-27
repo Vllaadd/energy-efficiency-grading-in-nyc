@@ -1,73 +1,54 @@
+# energy-efficiency-grading-in-nyc
+# REACT.JS 
+
 # App.js 
 
 In a React project, App.js file servers as the central hub, acting as the main entry point for the application. This file plays a crucial role in orchestrating the structure of our React application by integrating various components and managing the overall flow. 
 
-# BuildingsAPI.js
+# BuildingsAPI.js 
 
-### Methods Used:
+## Technology Used:
 
-1. `useState hook` - to initialize current state and change the value later.
-2. `useEffect hook` - to fetch data.
-3. `async await` - to deal with fetching data.
-4. `.filter method` - to filter data as the user types.
-5. `[... filterBuildings]` - spread method used to include all the data.
-6. `if conditionals` - used when sorting buildings.
-7. `math.ceil( ... )` - to round the value when setting up the pages.
-8. `.sort method` - used to sort buildings based on energy efficiency score.
-9. `Object.values method` - to get an array of a given object's own enumerable property values.
-10. `.join method` - to join elements of an array into a string.
-11. `.toLowerCase method` - to convert strings to lowercase for case-insensitive comparison.
-12. `.slice method` - to extract a portion of an array (used for pagination).
-13. `Event Handling` - functions like handleInput, handlePreviousPage, and handleNextPage are handling user input and page navigation.
+1. **React.js:**
+   - A JavaScript library for building user interfaces.
+   - Used for creating reusable UI components and managing the application's state.
 
-## Explenations 
+2. **useState:**
+   - A React Hook used for adding state to functional components.
+   - Enables the component to maintain and update its state.
 
-### Line 7
-In the lines 7 to 10 we are using `useState` hook to initialize state variables. 
-`buildings` is a state variable that will hold an array of building data
-`search` is a state variable that will hold the user's input 
-'currentPage' is a state variable that will keep track of the current page number
-`buildingsPerPage` is a constant representing the number of buildings you want to display per page. 
+3. **useEffect:**
+   - A React Hook used for handling side effects in functional components.
+   - Used to perform asynchronous tasks, such as fetching data, after the component has rendered.
 
-By using state, we ensure that React can track changes to these values, and when they update, the component will re-render appropriately. 
+4. **axios:**
+   - A JavaScript library used for making HTTP requests.
+   - Used here to fetch data from an external API.
 
-### Line 13
-The `useEffect` hook is used for handling side effects in functinal components. Side effects can include data fetching, subscriptions, or manually changing the DOM. 
+5. **CSS:**
+   - Cascading Style Sheets are used to style the components.
+   - The styles are applied using a separate CSS file (`buildingsAPI.css`).
 
-The primary purpose here is to fetch data from an external API when the component mounts. 
-`const fetchData = async () => {` - this is an asynchronous function responsible for making an API call using Axios to the specified URL 
-`const response = await axios.get(` - axios is used to make a GET request to the provided URL, which is the API endpoint for NYC building data. 
-`const fetchedData = response.data;` - if the API call is successful, the data is extracted from the response (response.data) and stored in the `fetchedData`
-`setBuildings(fetchedData);` - this line updates the `buildings` stte with the fetched data 
-`fetchData();` - after we handle any potential error during the API call with `catch` block, we invoke fetchData function immediatelly after the component mounts (thanks to the empty dependency array "[]", ensuring that the API call is made when the component is first rendered)
+6. **Environment Variables:**
+   - The `apiToken` is imported from a configuration file (`.config`).
+   - Environment variables help in keeping sensitive information, like API tokens, private.
 
-The use of 'useEffect' is crucial here because making API calls directly in the component body could lead to performance issues or unexpected behavior. useEffect ensures that the API call is made at the appropriate time in the component's lifecycle. 
+7. **Functional Components:**
+   - React components are written as functional components.
+   - They make use of React Hooks for managing state and side effects.
 
-### Line 41
-The `filter` function is used on the `buildings` array to create a new array (`filterBuildings`) with elements that satisfy the provided condition. 
-`(building) => {...}` is an arrow function that takes each `building` object from the `building` array. 
-`Object.values(building)` returns an array containing all the property values of the `building` object
+8. **Event Handling:**
+   - Event handling is implemented with functions like `handleInput`, `handleFishClick`, `handlePreviousPage`, and `handleNextPage`.
 
-### Line 49
-`[...filterBuildings]` - the spread operator creates a shallow copy of the `filterBuildings` array. This is done to avoid mutating the original array during the sorting process. 
-`sort((a, b) => { ... })` - the sort method is used to arrange the buildings in a specific order. The comparison function `(a, b) => ... ` determines the sorting logic. 
-'sort' function should return a negative number, zero, or a positive number. The specific values -1, 0, and 1 are commonly used for this purpose. 
-So, when you return `-1`, it's telling the sort function that the elements should be rearranged so that the current element `(a)` comes before the next element `(b)`. When you return `1`, it's indicating that the current element `(a)` should come after the next element `(b)`.
+9. **Array Methods:**
+   - JavaScript array methods like `filter` and `sort` are used to manipulate and filter data.
+   - `Object.values` is used to get an array of the building's property values.
 
-### Line 62
-`pagination logic`:
-1. `totalPages`: 
-    `totalPages` is calculated by dividing the total number of buildings (`sortedBuildings.length`) by the number of buildings per pate (`buildingsPerPage`). 
-    `Math.ceil` is used to ensure that if there's a remainder, it is rounded up to the nearest whole number. This gives the total number of pages needed to display all buildings. 
-2. `startIndex` and `endIndex`:
-    `startIndex` is calculated to determine the index of the fist building on the current page 
-    `endIndex` is calculated to determine the index of the last building on the current page 
-3. `currentBuildings`: 
-    `currentBuildings` is created using the `slice` method on the `sortedBuildings` array. It represents the subset of buildings that should be displayed on the current page. 
-4. `handlePreviousPage` is a function that 
-    decreases the current page (`currentPage`) by 1, but only if the current page is greater than 1. This ensures that the page number doesn't go below 1. 
-5. `handleNextPage`: 
-    `handleNextPage` is a function that increases the current page (`currentPage`) by 1, but only if the current page is less than the total number of pages (`totalPages`). This prevents navigating beyond the last page. 
+10. **Pagination:**
+    - Pagination logic is implemented to display a subset of buildings per page.
 
+11. **Promises and Async/Await:**
+    - The `axios.get` method returns a promise, and `async/await` is used to handle the asynchronous response.
 
-
+12. **ES6 Features:**
+    - Arrow functions, destructuring, and template literals are used, showcasing features introduced in ECMAScript 6 (ES6).
