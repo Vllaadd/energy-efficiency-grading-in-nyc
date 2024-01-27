@@ -1,4 +1,5 @@
-# Project: Energy Efficiency Grading In New York City
+**Project:**  
+# Energy Efficiency Grading In New York City
 
 This breakdown details the technologies employed in each file of the project. Gain insights into the tools and concepts utilized to create the Energy Efficiency Grading application in New York City.
 
@@ -16,6 +17,7 @@ In a React project, App.js file servers as the central hub, acting as the main e
 2. **useState:**
    - A React Hook used for adding state to functional components.
    - Enables the component to maintain and update its state.
+   - The `useState` hook takes an initial value and returns an array with two elements: the current state value and a function that allows us to update the state. By using this function, we can modify the state, and when the state changes, React rerenders the component to reflect the updated state. 
 
 3. **useEffect:**
    - A React Hook used for handling side effects in functional components.
@@ -23,6 +25,7 @@ In a React project, App.js file servers as the central hub, acting as the main e
 
 4. **axios:**
    - A JavaScript library used for making HTTP requests.
+   - `HTTP - Hypertext Transfer Protocol` is a protocol used for communication on the World Wide Web. When we visit a website, our browser sends HTTP requests to the server, and the server responds with the requested data. 
    - Used here to fetch data from an external API.
 
 5. **CSS:**
