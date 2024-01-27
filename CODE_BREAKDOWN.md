@@ -1,6 +1,6 @@
 # Energy Efficiency Grading In New York City
 
-This breakdown details the technologies employed in each file of the project. Gain insights into the tools and concepts utilized to create the Energy Efficiency Grading application in New York City.
+This breakdown details the technologies employed in each file of the project. Gain insights into the tools and concepts utilized to create the Energy Efficiency Grading in New York City.
 
 
 ## App.js 
