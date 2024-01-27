@@ -1,13 +1,11 @@
 # energy-efficiency-grading-in-nyc
-# REACT.JS 
+## Technology used per file 
 
 # App.js 
 
 In a React project, App.js file servers as the central hub, acting as the main entry point for the application. This file plays a crucial role in orchestrating the structure of our React application by integrating various components and managing the overall flow. 
 
 # BuildingsAPI.js 
-
-## Technology Used:
 
 1. **React.js:**
    - A JavaScript library for building user interfaces.
