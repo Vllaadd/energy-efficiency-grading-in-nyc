@@ -1,5 +1,5 @@
-# energy-efficiency-grading-in-nyc
-**Technology used per file**
+# Technology used per file``
+# Project name: Energy Efficiency Grading In New York City 
 
 # App.js 
 
