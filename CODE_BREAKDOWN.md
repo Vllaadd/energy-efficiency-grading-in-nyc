@@ -1,5 +1,5 @@
 # energy-efficiency-grading-in-nyc
-## Technology used per file 
+**Technology used per file**
 
 # App.js 
 
